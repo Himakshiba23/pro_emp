@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @project.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @project.description %>
+</p>
+<p>
+  <strong>List of Employees working on <%= @project.title %>:</strong><br>
+  <% members =  @project.employees.map(&:email) %>
+  <% members.each do |value| %>
+    <%= value %>
+    <br>
+  <% end %></p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

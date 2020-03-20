@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProEmp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarNav">
+      <h5>Welcome, <%= current_employee.email %></h5>
+        <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item active">
+            <% if employee_signed_in? %>
+              <%= link_to 'My Projects', current_employee, class: "btn btn-outline-dark" %>
+
+              <%= link_to 'Edit profile', edit_employee_registration_path, class: "btn btn-outline-dark" %>
+              <%= link_to "Logout", destroy_employee_session_path, method: :delete, class: "btn btn-outline-dark"  %>
+            <% else %>
+              <%= link_to "Sign up", new_employee_registration_path, class: "btn btn-outline-dark"  %>
+              <%= link_to "Login", new_employee_session_path, class: "btn btn-outline-dark"  %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <br>
+    <% if employee_signed_in? %>
+      <div id="setFormCenter">
+    <% else %>
+      <div id="addFormCenter">
+    <% end %>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Email:</strong>
+  <%= @employee.email %>
+</p>
+<p>
+  <strong>List of current Projects:</strong><br>
+  <% current_projects =  @employee.projects.map(&:title) %>
+  <% current_projects.each do |value| %>
+    <%=  value %>
+    <br>
+  <% end %>
+</p>
+<%= link_to 'Back', projects_path %>
